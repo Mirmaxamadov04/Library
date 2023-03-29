@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <section class="header">
+        <h1 class="header__heading">My Library</h1>
+        <div class="library-info">
+          <p class="library-info__paragraph">Library log</p>
+          <div>
+            <p>Total Books:</p>
+            <p class="books-count"></p>
+          </div>
+          <div>
+            <p>Read:</p>
+            <p class="read-count"></p>
+          </div>
+
+          <div>
+            <p>Unread:</p>
+            <p class="not-read-count"></p>
+          </div>
+        </div>
+      </section>
+
+      <ul class="book-list"></ul>
+
+      <template id="template">
+        <li class="book-item">
+          <button class="delete">
+            <i class="fa-solid fa-x" id="delete" style="color: #ffffff"></i>
+          </button>
+          <p class="book-title"></p>
+          <p>By: <span class="book-author"></span></p>
+          <p>Number of pages: <span class="book-pages"></span></p>
+          <p>Language: <span class="book-language"></span></p>
+          <p>Published: <span class="book-date"></span></p>
+          <button class="not-read"></button>
+        </li>
+      </template>
+    </div>
+
+    <form action="" class="form">
+      <h1 class="form__heading">Add New Book</h1>
+      <button type="button" class="hide-form-button">
+        <i class="fa-solid fa-x"></i>
+      </button>
+      <label for="title"
+        >Book title*
+        <input
+          type="text"
+          id="title"
+          placeholder="Title"
+          name="title"
+          required
+          value="aa"
+        />
+      </label>
+
+      <label for="author"
+        >Book author*
+        <input
+          type="text"
+          id="author"
+          placeholder="Author"
+          name="author"
+          value="re"
+          required
+        />
+      </label>
+
+      <label for="pages"
+        >Number of pages*
+        <input
+          type="number"
+          id="pages"
+          placeholder="Number of Pages"
+          name="pages"
+          value="12"
+          required
+        />
+      </label>
+
+      <label for="language"
+        >Language*
+        <input
+          type="text"
+          id="language"
+          placeholder="Language"
+          name="language"
+          required
+          value="uz"
+        />
+      </label>
+
+      <label for="date"
+        >Publishing date*
+        <input type="date" id="date" name="date" required />
+      </label>
+
+      <label for="status"
+        >book status*
+        <select name="status" id="status" required>
+          <option value="" disabled>did you read it</option>
+          <option selected value="read">I already read it</option>
+          <option value="none-read">Still have to read it</option>
+        </select>
+      </label>
+      <div>
+        <button type="submit" class="form__Add-button">Add</button>
+        <!-- <button type="submit" class="form__clear-button">Clear fields</button> -->
+      </div>
+    </form>
+
+    <button class="book-add">+</button>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
