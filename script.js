@@ -129,6 +129,13 @@ elForm.addEventListener("submit", (evt) => {
   numOfUnRead();
   elForm.classList.remove("form-clicked");
   container.classList.remove("container-clicked");
+
+  elBookTitle.value = "";
+  elBookAuthor.value = "";
+  elBookPages.value = "";
+  elBookLanguage.value = "";
+  elBookDate.value = "";
+  elBookStatus.value = "";
 });
 
 elBookList.addEventListener("click", (evt) => {
