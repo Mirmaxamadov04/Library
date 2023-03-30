@@ -146,6 +146,12 @@ elBookList.addEventListener("click", (evt) => {
     const bookId = parseInt(
       bookElement.querySelector("#delete").dataset.bookId
     );
+    console.log(Books);
+    console.log(bookId);
+    console.log(Books[bookId]["readStatus"]);
+
+    console.log(Books[bookId].readStatus);
+
     if (Books[bookId].readStatus == "none-read") {
       evt.target.textContent = "read";
       Books[bookId].readStatus = "read";
@@ -174,6 +180,9 @@ elBookList.addEventListener("click", (evt) => {
     if (bookIndex !== -1) {
       Books.splice(bookIndex, 1);
 
+      for (let i = bookIndex; i < Books.length; i++) {
+        Books[i].id--;
+      }
       localStorage.setItem("books", JSON.stringify(Books));
       AddBook(Books, elBookList);
     }
