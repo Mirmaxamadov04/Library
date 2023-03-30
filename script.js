@@ -49,36 +49,11 @@ const numOfUnRead = function () {
   unReadCountValue.textContent = unreadcount;
 };
 
-// const plusread = function () {
-//   readcount += 1;
-//   localStorage.setItem("readedBooks", JSON.stringify(readcount));
-//   ReadCountValue.textContent = readcount;
-// };
-
-// const plusunread = function () {
-//   unreadcount += 1;
-//   localStorage.setItem("unReadedBooks", JSON.stringify(unreadcount));
-//   unReadCountValue.textContent = unreadcount;
-// };
-
-// const minusread = function () {
-//   readcount -= 1;
-//   localStorage.setItem("readedBooks", JSON.stringify(readcount));
-//   ReadCountValue.textContent = readcount;
-// };
-
-// const minusunread = function () {
-//   unreadcount -= 1;
-//   localStorage.setItem("unReadedBooks", JSON.stringify(unreadcount));
-//   unReadCountValue.textContent = unreadcount;
-// };
-
 const AddBook = function (array, node) {
   node.innerHTML = null;
 
   const BooksFagment = document.createDocumentFragment();
   array.forEach((book) => {
-    // console.log(book, "book");
     const elTemplateCopy = elTemplate.cloneNode(true);
 
     const bookTitleValue = elTemplateCopy.querySelector(".book-title");
@@ -189,18 +164,15 @@ elBookList.addEventListener("click", (evt) => {
     const bookId = parseInt(evt.target.dataset.bookId);
     const bookIndex = Books.findIndex((book) => book.id === bookId);
 
-    if (Books[bookIndex].readStatus == "read") {
-      // minusread();
-    } else if (Books[bookIndex].readStatus == "none-read") {
-      // minusunread();
-    }
-
     if (bookIndex !== -1) {
       Books.splice(bookIndex, 1);
 
       localStorage.setItem("books", JSON.stringify(Books));
       AddBook(Books, elBookList);
     }
+
+    numOfRead();
+    numOfUnRead();
 
     allbooks = Books.length;
     localStorage.setItem("allBooks", JSON.stringify(allbooks));
