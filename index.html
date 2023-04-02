@@ -18,7 +18,7 @@
     <div class="container">
       <section class="header">
         <h1 class="header__heading">My Library</h1>
-        <div class="library-info">
+        <!-- <div class="library-info">
           <p class="library-info__paragraph">Library log</p>
           <div>
             <p>Total Books:</p>
@@ -33,8 +33,32 @@
             <p>Unread:</p>
             <p class="not-read-count"></p>
           </div>
-        </div>
+        </div> -->
       </section>
+      <div class="yayayay">
+        <div class="nodata-div">
+          <img src="./images/nodata.png" alt="" class="nodata" />
+          <p class="nodata-paragraph">Nothing found, yay</p>
+        </div>
+      </div>
+
+      <button class="book-add">Add Book</button>
+
+      <div class="library-info">
+        <div>
+          <p>Books:</p>
+          <p class="books-count"></p>
+        </div>
+        <div>
+          <p>Read:</p>
+          <p class="read-count"></p>
+        </div>
+
+        <div>
+          <p>Unread:</p>
+          <p class="not-read-count"></p>
+        </div>
+      </div>
 
       <ul class="book-list"></ul>
 
@@ -55,6 +79,7 @@
 
     <form action="" class="form">
       <h1 class="form__heading">Add New Book</h1>
+
       <button type="button" class="hide-form-button">
         <i class="fa-solid fa-x"></i>
       </button>
@@ -88,6 +113,7 @@
           placeholder="Number of Pages"
           name="pages"
           required
+          min="3"
         />
       </label>
 
@@ -120,8 +146,6 @@
         <!-- <button type="submit" class="form__clear-button">Clear fields</button> -->
       </div>
     </form>
-
-    <button class="book-add">+</button>
 
     <script src="./script.js"></script>
   </body>

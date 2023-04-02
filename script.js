@@ -10,23 +10,25 @@ const elBookPages = document.getElementById("pages");
 const elBookLanguage = document.getElementById("language");
 const elBookDate = document.getElementById("date");
 const elBookStatus = document.getElementById("status");
-
 const bookButton = elTemplate.querySelector(".not-read");
 const ReadCountValue = document.querySelector(".read-count");
 const unReadCountValue = document.querySelector(".not-read-count");
 const BooksCount = document.querySelector(".books-count");
 
+//declaring array
 const storedBooks = localStorage.getItem("books");
 const Books = storedBooks ? JSON.parse(storedBooks) : [];
 
-let allbooks = Books.length;
-let readcount = parseInt(localStorage.getItem("readedBooks")) || 0;
-let unreadcount = parseInt(localStorage.getItem("unReadedBooks")) || 0;
+//count books regarding statsus
+let allBooks = Books.length;
+let readCount = parseInt(localStorage.getItem("readedBooks")) || 0;
+let unReadCount = parseInt(localStorage.getItem("unReadedBooks")) || 0;
 
+//count function
 function initCounts() {
-  ReadCountValue.textContent = readcount;
-  unReadCountValue.textContent = unreadcount;
-  BooksCount.textContent = allbooks;
+  ReadCountValue.textContent = readCount;
+  unReadCountValue.textContent = unReadCount;
+  BooksCount.textContent = allBooks;
 }
 
 // Call initCounts when the page is loaded
@@ -36,19 +38,32 @@ const formdisplay = function () {
   elForm.classList.toggle("form-clicked");
   container.classList.toggle("container-clicked");
 };
-
+//counts readed books
 const numOfRead = function () {
-  readcount = Books.filter((book) => book.readStatus === "read").length;
-  localStorage.setItem("readedBooks", JSON.stringify(readcount));
-  ReadCountValue.textContent = readcount;
+  readCount = Books.filter((book) => book.readStatus === "read").length;
+  localStorage.setItem("readedBooks", JSON.stringify(readCount));
+  ReadCountValue.textContent = readCount;
 };
 
+//counts unreaded books
 const numOfUnRead = function () {
-  unreadcount = Books.filter((book) => book.readStatus === "none-read").length;
-  localStorage.setItem("unReadedBooks", JSON.stringify(unreadcount));
-  unReadCountValue.textContent = unreadcount;
+  unReadCount = Books.filter((book) => book.readStatus === "none-read").length;
+  localStorage.setItem("unReadedBooks", JSON.stringify(unReadCount));
+  unReadCountValue.textContent = unReadCount;
 };
 
+//nodata function
+const checkdata = function () {
+  if (Books.length == 0) {
+    document.querySelector(".nodata-div").style.display = "block";
+  } else {
+    document.querySelector(".nodata-div").style.display = "none";
+  }
+};
+
+checkdata();
+
+//addBook function
 const AddBook = function (array, node) {
   node.innerHTML = null;
 
@@ -89,6 +104,7 @@ AddBook(Books, elBookList);
 elShowForm.addEventListener("click", formdisplay);
 elHideButton.addEventListener("click", formdisplay);
 
+//listen form submit
 elForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
@@ -122,11 +138,12 @@ elForm.addEventListener("submit", (evt) => {
   lastBookButton.textContent = readStatusText;
   lastBookButton.style.backgroundColor = readStatusColor;
 
-  allbooks = Books.length;
-  localStorage.setItem("allBooks", JSON.stringify(allbooks));
-  BooksCount.textContent = allbooks;
+  allBooks = Books.length;
+  localStorage.setItem("allBooks", JSON.stringify(allBooks));
+  BooksCount.textContent = allBooks;
   numOfRead();
   numOfUnRead();
+  checkdata();
   elForm.classList.remove("form-clicked");
   container.classList.remove("container-clicked");
 
@@ -146,11 +163,6 @@ elBookList.addEventListener("click", (evt) => {
     const bookId = parseInt(
       bookElement.querySelector("#delete").dataset.bookId
     );
-    console.log(Books);
-    console.log(bookId);
-    console.log(Books[bookId]["readStatus"]);
-
-    console.log(Books[bookId].readStatus);
 
     if (Books[bookId].readStatus == "none-read") {
       evt.target.textContent = "read";
@@ -189,14 +201,14 @@ elBookList.addEventListener("click", (evt) => {
 
     numOfRead();
     numOfUnRead();
+    checkdata();
 
-    allbooks = Books.length;
-    localStorage.setItem("allBooks", JSON.stringify(allbooks));
-    BooksCount.textContent = allbooks;
+    allBooks = Books.length;
+    localStorage.setItem("allBooks", JSON.stringify(allBooks));
+    BooksCount.textContent = allBooks;
   }
 });
 
 window.addEventListener("load", AddBook(Books, elBookList));
 
-numOfRead();
-numOfUnRead();
+//form validation
